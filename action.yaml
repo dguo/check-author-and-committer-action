@@ -2,16 +2,20 @@ name: 'Check Author and Committer'
 author: 'Danny Guo'
 description: 'Checks the name and email for the author and committer'
 inputs:
-  author_email_regex:
+  github-token:
+    description: 'The GitHub token to use for API calls'
+    type: string
+    required: true
+  author-email-regex:
     description: 'JavaScript regex to validate the author email'
     required: false
-  author_name_regex:
+  author-name-regex:
     description: 'JavaScript regex to validate the author name'
     required: false
-  committer_email_regex:
+  committer-email-regex:
     description: 'JavaScript regex to validate the committer email'
     required: false
-  committer_name_regex:
+  committer-name-regex:
     description: 'JavaScript regex to validate the committer name'
     required: false
 runs:
