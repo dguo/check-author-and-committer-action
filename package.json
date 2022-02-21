@@ -1,0 +1,39 @@
+{
+    "name": "check-author-and-committer-action",
+    "version": "0.0.0",
+    "description": "GitHub Action for checking the name and email for the author and committer",
+    "main": "lib/main.js",
+    "author": {
+        "name": "Danny Guo",
+        "email": "danny@dannyguo.com",
+        "url": "https://dannyguo.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dguo/check-author-and-committer-action.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dguo/check-author-and-committer-action/issues"
+    },
+    "homepage": "https://github.com/dguo/check-author-and-committer-action#readme",
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier --write '**/*.ts'",
+        "format:check": "prettier --check '**/*.ts'",
+        "package": "ncc build --source-map --license licenses.txt"
+    },
+    "devDependencies": {
+        "@vercel/ncc": "^0.33.3",
+        "prettier": "^2.5.1",
+        "typescript": "^4.5.5"
+    },
+    "prettier": {
+        "bracketSpacing": false,
+        "tabWidth": 4,
+        "trailingComma": "none"
+    },
+    "dependencies": {
+        "@actions/core": "^1.6.0"
+    }
+}

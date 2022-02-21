@@ -1,0 +1,19 @@
+name: 'Check Author and Committer'
+author: 'Danny Guo'
+description: 'Checks the name and email for the author and committer'
+inputs:
+  author_email_regex:
+    description: 'JavaScript regex to validate the author email'
+    required: false
+  author_name_regex:
+    description: 'JavaScript regex to validate the author name'
+    required: false
+  committer_email_regex:
+    description: 'JavaScript regex to validate the committer email'
+    required: false
+  committer_name_regex:
+    description: 'JavaScript regex to validate the committer name'
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
