@@ -25,5 +25,6 @@ with:
 ```
 
 Git [does distinguish](https://stackoverflow.com/q/18750808/1481479) between the
-author and committer for a commit. In practice, they are the same person for
-many cases.
+author and committer for a commit. They are the same person for many cases, but
+there are cases where it [makes sense for them to be
+different](https://ivan.bessarabov.com/blog/git-author-committer).

@@ -22,4 +22,4 @@ jobs:
       - uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          committer-email-regex: '@gmail\.com$'
+          committer-email-regex: '@gmail\.com$|@github\.com$'
