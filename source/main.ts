@@ -23,6 +23,21 @@ function checkField({
 
 async function run(): Promise<void> {
     try {
+        const authorEmailRegex = core.getInput("author-email-regex");
+        const authorNameRegex = core.getInput("author-name-regex");
+        const committerEmailRegex = core.getInput("committer-email-regex");
+        const committerNameRegex = core.getInput("committer-name-regex");
+        if (
+            !authorEmailRegex &&
+            !authorNameRegex &&
+            !committerEmailRegex &&
+            !committerNameRegex
+        ) {
+            throw new Error(
+                "No regexes were provided. Consider removing this action if you don't need it."
+            );
+        }
+
         let commitSha;
         if (
             github.context.eventName === "push" ||
@@ -44,28 +59,21 @@ async function run(): Promise<void> {
             repo: github.context.repo.repo
         });
 
-        const authorEmailRegex = core.getInput("author-email-regex");
         checkField({
             field: "author email",
             regex: authorEmailRegex,
             value: commit.author.email
         });
-
-        const authorNameRegex = core.getInput("author-name-regex");
         checkField({
             field: "author name",
             regex: authorNameRegex,
             value: commit.author.name
         });
-
-        const committerEmailRegex = core.getInput("committer-email-regex");
         checkField({
             field: "committer email",
             regex: committerEmailRegex,
             value: commit.committer.email
         });
-
-        const committerNameRegex = core.getInput("committer-name-regex");
         checkField({
             field: "committer name",
             regex: committerNameRegex,
