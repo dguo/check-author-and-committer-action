@@ -26,6 +26,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.checkField = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 function checkField({ field, regex, value }) {
@@ -33,6 +34,7 @@ function checkField({ field, regex, value }) {
         throw new Error(`The ${field} (${value}) does not match the regex: ${regex}`);
     }
 }
+exports.checkField = checkField;
 async function run() {
     try {
         const authorEmailRegex = core.getInput("author-email-regex");

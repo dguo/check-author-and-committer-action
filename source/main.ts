@@ -5,7 +5,7 @@ import {
     PullRequestSynchronizeEvent
 } from "@octokit/webhooks-definitions/schema";
 
-function checkField({
+export function checkField({
     field,
     regex,
     value
