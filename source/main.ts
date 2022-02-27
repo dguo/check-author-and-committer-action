@@ -72,7 +72,21 @@ async function run(): Promise<void> {
             value: commit.committer.name
         });
     } catch (error) {
-        if (error instanceof Error) core.setFailed(error.message);
+        let errorMessage: string;
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        } else if (error instanceof Object) {
+            errorMessage = error.toString();
+        } else {
+            errorMessage = "Unexpected error";
+        }
+
+        const customErrorMessage = core.getInput("custom-error-message");
+        if (customErrorMessage) {
+            errorMessage += `\n${customErrorMessage}`;
+        }
+
+        core.setFailed(errorMessage);
     }
 }
 
