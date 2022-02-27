@@ -22,4 +22,5 @@ jobs:
       - uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          custom-error-message: 'Check out https://example.com'
           committer-email-regex: '@gmail\.com$|@github\.com$'

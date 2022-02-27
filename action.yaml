@@ -3,8 +3,11 @@ author: 'Danny Guo'
 description: 'Checks the name and email for the author and committer'
 inputs:
   github-token:
-    description: 'The GitHub token to use for API calls'
+    description: 'GitHub token to use for API calls'
     required: true
+  custom-error-message:
+    description: 'Custom error message to provide additional context or information'
+    required: false
   author-email-regex:
     description: 'JavaScript regex to validate the author email'
     required: false
