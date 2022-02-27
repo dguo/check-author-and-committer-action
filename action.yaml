@@ -1,6 +1,6 @@
 name: 'Check Author and Committer'
 author: 'Danny Guo'
-description: 'Checks the name and email for the author and committer'
+description: 'Checks the email address and/or name for the author and/or committer'
 inputs:
   github-token:
     description: 'GitHub token to use for API calls'
@@ -9,16 +9,16 @@ inputs:
     description: 'Custom error message to provide additional context or information'
     required: false
   author-email-regex:
-    description: 'JavaScript regex to validate the author email'
+    description: 'JavaScript regex to validate the author''s email address'
     required: false
   author-name-regex:
-    description: 'JavaScript regex to validate the author name'
+    description: 'JavaScript regex to validate the author''s name'
     required: false
   committer-email-regex:
-    description: 'JavaScript regex to validate the committer email'
+    description: 'JavaScript regex to validate the committer''s email address'
     required: false
   committer-name-regex:
-    description: 'JavaScript regex to validate the committer name'
+    description: 'JavaScript regex to validate the committer''s name'
     required: false
 runs:
   using: 'node16'
