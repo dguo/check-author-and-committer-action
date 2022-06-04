@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: dguo/check-author-and-committer@v1
+      - uses: dguo/check-author-and-committer-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           committer-email-regex: '@example\.com$'
@@ -34,7 +34,7 @@ email (for those who [keep their personal email address
 private](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address#about-commit-email-addresses)).
 
 ```yaml
-- uses: dguo/check-author-and-committer@v1
+- uses: dguo/check-author-and-committer-action@v1
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     committer-email-regex: '@example\.com$|@users\.noreply\.github\.com$'
@@ -47,7 +47,7 @@ useful for providing context, such as by linking to documentation that explains
 what the committer needs to do.
 
 ```yaml
-- uses: dguo/check-author-and-committer@v1
+- uses: dguo/check-author-and-committer-action@v1
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     custom-error-message: 'See https://example.com/internal-docs/setting-your-git-config'
@@ -57,7 +57,7 @@ what the committer needs to do.
 ### All Inputs
 
 ```yaml
-- uses: dguo/check-author-and-committer@v1
+- uses: dguo/check-author-and-committer-action@v1
   with:
     # (Required) GitHub token to use for API calls
     github-token: ${{ secrets.GITHUB_TOKEN }}
