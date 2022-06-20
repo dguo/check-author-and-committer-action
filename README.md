@@ -6,8 +6,6 @@ matches specified regexes. For example, you might want to ensure that committers
 use their organization email addresses rather than their personal email
 addresses.
 
-test change
-
 ## Usage
 
 This example checks that the committer has an email ending in
