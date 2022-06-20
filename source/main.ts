@@ -2,7 +2,9 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import {
     PushEvent,
-    PullRequestSynchronizeEvent
+    PullRequestSynchronizeEvent,
+    PullRequestOpenedEvent,
+    PullRequestReopenedEvent
 } from "@octokit/webhooks-definitions/schema";
 
 export function checkField({
@@ -39,24 +41,24 @@ async function run(): Promise<void> {
         }
 
         let commitSha;
-        if (
-            github.context.eventName === "push" ||
-            github.context.eventName === "pull_request"
-        ) {
-            const githubEvent = github.context.payload as
-                | PushEvent
-                | PullRequestSynchronizeEvent;
-            commitSha = githubEvent.after;
+        if ("pull_request" in github.context.payload) {
+            commitSha = (
+                github.context.payload as
+                    | PullRequestOpenedEvent
+                    | PullRequestReopenedEvent
+            ).pull_request.base.sha;
         } else {
-            throw new Error("Unexpected GitHub event");
+            commitSha = (
+                github.context.payload as
+                    | PushEvent
+                    | PullRequestSynchronizeEvent
+            ).after;
         }
 
         if (commitSha) {
             core.info(`Using commit SHA: ${commitSha}`);
         } else {
-            core.debug(
-                `GitHub event: ${JSON.stringify(github.context.payload)}`
-            );
+            core.debug(`GitHub context: ${JSON.stringify(github.context)}`);
             throw new Error("Failed to get the commit SHA");
         }
 

@@ -52,19 +52,17 @@ async function run() {
             throw new Error("No regexes were provided. Consider removing this action if you don't need it.");
         }
         let commitSha;
-        if (github.context.eventName === "push" ||
-            github.context.eventName === "pull_request") {
-            const githubEvent = github.context.payload;
-            commitSha = githubEvent.after;
+        if ("pull_request" in github.context.payload) {
+            commitSha = github.context.payload.pull_request.base.sha;
         }
         else {
-            throw new Error("Unexpected GitHub event");
+            commitSha = github.context.payload.after;
         }
         if (commitSha) {
             core.info(`Using commit SHA: ${commitSha}`);
         }
         else {
-            core.debug(`GitHub event: ${JSON.stringify(github.context.payload)}`);
+            core.debug(`GitHub context: ${JSON.stringify(github.context)}`);
             throw new Error("Failed to get the commit SHA");
         }
         const githubToken = core.getInput("github-token");
