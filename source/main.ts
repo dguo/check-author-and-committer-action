@@ -1,11 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import {
-    PushEvent,
-    PullRequestSynchronizeEvent,
-    PullRequestOpenedEvent,
-    PullRequestReopenedEvent
-} from "@octokit/webhooks-definitions/schema";
 
 export function checkField({
     field,
@@ -40,20 +34,12 @@ async function run(): Promise<void> {
             );
         }
 
-        let commitSha;
-        if ("pull_request" in github.context.payload) {
-            commitSha = (
-                github.context.payload as
-                    | PullRequestOpenedEvent
-                    | PullRequestReopenedEvent
-            ).pull_request.base.sha;
-        } else {
-            commitSha = (
-                github.context.payload as
-                    | PushEvent
-                    | PullRequestSynchronizeEvent
-            ).after;
-        }
+        /* We can't use the the context's SHA for pull rqueset events because it
+           represents a merge commit rather than the latest commit.
+           https://github.community/t/github-sha-isnt-the-value-expected/17903
+           */
+        const commitSha =
+            github.context.payload.pull_request?.head.sha ?? github.context.sha;
 
         if (commitSha) {
             core.info(`Using commit SHA: ${commitSha}`);

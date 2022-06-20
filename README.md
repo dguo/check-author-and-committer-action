@@ -22,7 +22,7 @@ jobs:
   check-commit-author:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: dguo/check-author-and-committer-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
