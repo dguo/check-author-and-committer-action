@@ -51,6 +51,15 @@ async function run(): Promise<void> {
             throw new Error("Unexpected GitHub event");
         }
 
+        if (commitSha) {
+            core.info(`Using commit SHA: ${commitSha}`);
+        } else {
+            core.debug(
+                `GitHub event: ${JSON.stringify(github.context.payload)}`
+            );
+            throw new Error("Failed to get the commit SHA");
+        }
+
         const githubToken = core.getInput("github-token");
         const octokit = github.getOctokit(githubToken);
         const {data: commit} = await octokit.rest.git.getCommit({
@@ -58,6 +67,11 @@ async function run(): Promise<void> {
             owner: github.context.repo.owner,
             repo: github.context.repo.repo
         });
+
+        core.info(`Author email: ${commit.author.email}`);
+        core.info(`Author name: ${commit.author.name}`);
+        core.info(`Committer email: ${commit.committer.email}`);
+        core.info(`Committer name: ${commit.committer.name}`);
 
         checkField({
             field: "author email",
