@@ -40,6 +40,7 @@ function checkField({ field, regex, value }) {
 }
 exports.checkField = checkField;
 async function run() {
+    var _a, _b;
     try {
         const authorEmailRegex = core.getInput("author-email-regex");
         const authorNameRegex = core.getInput("author-name-regex");
@@ -51,13 +52,11 @@ async function run() {
             !committerNameRegex) {
             throw new Error("No regexes were provided. Consider removing this action if you don't need it.");
         }
-        let commitSha;
-        if ("pull_request" in github.context.payload) {
-            commitSha = github.context.payload.pull_request.base.sha;
-        }
-        else {
-            commitSha = github.context.payload.after;
-        }
+        /* We can't use the the context's SHA for pull rqueset events because it
+           represents a merge commit rather than the latest commit.
+           https://github.community/t/github-sha-isnt-the-value-expected/17903
+           */
+        const commitSha = (_b = (_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head.sha) !== null && _b !== void 0 ? _b : github.context.sha;
         if (commitSha) {
             core.info(`Using commit SHA: ${commitSha}`);
         }

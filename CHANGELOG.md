@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.1.1] - 2022-06-20
+
+### Fixed
+
+- Fix getting the commit to use for pull request events
+
 ## [1.1.0] - 2022-06-20
 
 ### Fixed
@@ -22,5 +28,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - Initial implementation
 
-[Unreleased]: https://github.com/dguo/check-author-and-committer-action/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/dguo/check-author-and-committer-action/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/dguo/check-author-and-committer-action/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/dguo/check-author-and-committer-action/compare/v1.0.0...v1.1.0

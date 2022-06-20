@@ -10,7 +10,7 @@ jobs:
   build: # Run CI checks and make sure the build works
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: |
           npm install
       - run: |
@@ -18,7 +18,7 @@ jobs:
   test: # Make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
